@@ -15,6 +15,7 @@
 		A15B7873200C4FAE0097F6E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B7872200C4FAE0097F6E1 /* main.m */; };
 		A15B787D200C4FAE0097F6E1 /* appstore_transitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B787C200C4FAE0097F6E1 /* appstore_transitionTests.m */; };
 		A15B7888200C4FAE0097F6E1 /* appstore_transitionUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B7887200C4FAE0097F6E1 /* appstore_transitionUITests.m */; };
+		A15B789D200C8F190097F6E1 /* DetailTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B789C200C8F190097F6E1 /* DetailTableVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		A15B7883200C4FAE0097F6E1 /* appstore_transitionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = appstore_transitionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15B7887200C4FAE0097F6E1 /* appstore_transitionUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = appstore_transitionUITests.m; sourceTree = "<group>"; };
 		A15B7889200C4FAE0097F6E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A15B789B200C8F190097F6E1 /* DetailTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTableVC.h; sourceTree = "<group>"; };
+		A15B789C200C8F190097F6E1 /* DetailTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailTableVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				A15B786E200C4FAE0097F6E1 /* LaunchScreen.storyboard */,
 				A15B7871200C4FAE0097F6E1 /* Info.plist */,
 				A15B7872200C4FAE0097F6E1 /* main.m */,
+				A15B789B200C8F190097F6E1 /* DetailTableVC.h */,
+				A15B789C200C8F190097F6E1 /* DetailTableVC.m */,
 			);
 			path = appstore_transition;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 			files = (
 				A15B7868200C4FAE0097F6E1 /* ViewController.m in Sources */,
 				A15B7873200C4FAE0097F6E1 /* main.m in Sources */,
+				A15B789D200C8F190097F6E1 /* DetailTableVC.m in Sources */,
 				A15B7865200C4FAE0097F6E1 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
