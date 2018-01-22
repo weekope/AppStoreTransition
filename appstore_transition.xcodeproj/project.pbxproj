@@ -16,6 +16,8 @@
 		A15B787D200C4FAE0097F6E1 /* appstore_transitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B787C200C4FAE0097F6E1 /* appstore_transitionTests.m */; };
 		A15B7888200C4FAE0097F6E1 /* appstore_transitionUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B7887200C4FAE0097F6E1 /* appstore_transitionUITests.m */; };
 		A15B789D200C8F190097F6E1 /* DetailTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B789C200C8F190097F6E1 /* DetailTableVC.m */; };
+		A1CA046720119254004253FB /* AnimatorShowImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A1CA046620119254004253FB /* AnimatorShowImage.m */; };
+		A1CA046A20119B84004253FB /* AnimatorShowDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = A1CA046920119B84004253FB /* AnimatorShowDetail.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		A15B7889200C4FAE0097F6E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A15B789B200C8F190097F6E1 /* DetailTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTableVC.h; sourceTree = "<group>"; };
 		A15B789C200C8F190097F6E1 /* DetailTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailTableVC.m; sourceTree = "<group>"; };
+		A1CA046520119254004253FB /* AnimatorShowImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimatorShowImage.h; sourceTree = "<group>"; };
+		A1CA046620119254004253FB /* AnimatorShowImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimatorShowImage.m; sourceTree = "<group>"; };
+		A1CA046820119B84004253FB /* AnimatorShowDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimatorShowDetail.h; sourceTree = "<group>"; };
+		A1CA046920119B84004253FB /* AnimatorShowDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimatorShowDetail.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,17 +110,15 @@
 		A15B7862200C4FAE0097F6E1 /* appstore_transition */ = {
 			isa = PBXGroup;
 			children = (
+				A1CA0461201191E1004253FB /* Animator */,
+				A1CA0460201191C4004253FB /* ViewController */,
 				A15B7863200C4FAE0097F6E1 /* AppDelegate.h */,
 				A15B7864200C4FAE0097F6E1 /* AppDelegate.m */,
-				A15B7866200C4FAE0097F6E1 /* ViewController.h */,
-				A15B7867200C4FAE0097F6E1 /* ViewController.m */,
 				A15B7869200C4FAE0097F6E1 /* Main.storyboard */,
 				A15B786C200C4FAE0097F6E1 /* Assets.xcassets */,
 				A15B786E200C4FAE0097F6E1 /* LaunchScreen.storyboard */,
 				A15B7871200C4FAE0097F6E1 /* Info.plist */,
 				A15B7872200C4FAE0097F6E1 /* main.m */,
-				A15B789B200C8F190097F6E1 /* DetailTableVC.h */,
-				A15B789C200C8F190097F6E1 /* DetailTableVC.m */,
 			);
 			path = appstore_transition;
 			sourceTree = "<group>";
@@ -135,6 +139,28 @@
 				A15B7889200C4FAE0097F6E1 /* Info.plist */,
 			);
 			path = appstore_transitionUITests;
+			sourceTree = "<group>";
+		};
+		A1CA0460201191C4004253FB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A15B7866200C4FAE0097F6E1 /* ViewController.h */,
+				A15B7867200C4FAE0097F6E1 /* ViewController.m */,
+				A15B789B200C8F190097F6E1 /* DetailTableVC.h */,
+				A15B789C200C8F190097F6E1 /* DetailTableVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A1CA0461201191E1004253FB /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				A1CA046820119B84004253FB /* AnimatorShowDetail.h */,
+				A1CA046920119B84004253FB /* AnimatorShowDetail.m */,
+				A1CA046520119254004253FB /* AnimatorShowImage.h */,
+				A1CA046620119254004253FB /* AnimatorShowImage.m */,
+			);
+			path = Animator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,8 +297,10 @@
 			files = (
 				A15B7868200C4FAE0097F6E1 /* ViewController.m in Sources */,
 				A15B7873200C4FAE0097F6E1 /* main.m in Sources */,
+				A1CA046A20119B84004253FB /* AnimatorShowDetail.m in Sources */,
 				A15B789D200C8F190097F6E1 /* DetailTableVC.m in Sources */,
 				A15B7865200C4FAE0097F6E1 /* AppDelegate.m in Sources */,
+				A1CA046720119254004253FB /* AnimatorShowImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

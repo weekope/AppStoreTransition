@@ -40,12 +40,12 @@ const CGFloat headerHeight = 450.0f;
     view.tag = 1000;
     [self.tableView addSubview:view];
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth([UIScreen mainScreen].bounds)-60.0f, 20.0f, 40.0f, 40.0f)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth([UIScreen mainScreen].bounds)-60.0f, 20.0f-headerHeight, 40.0f, 40.0f)];
     button.backgroundColor = [UIColor whiteColor];
     button.layer.cornerRadius = 20.0f;
     button.tag = 2000;
     [button addTarget:self action:@selector(actionPop:) forControlEvents:UIControlEventTouchUpInside];
-    [[UIApplication sharedApplication].delegate.window addSubview:button];
+    [self.tableView addSubview:button];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -75,6 +75,11 @@ const CGFloat headerHeight = 450.0f;
         v.frame = CGRectMake(CGRectGetMinX(v.frame), scrollView.contentOffset.y,
                              CGRectGetWidth(v.frame), CGRectGetHeight(v.frame));
     }
+    
+    UIButton *b = [self.tableView viewWithTag:2000];
+    b.frame = CGRectMake(CGRectGetMinX(b.frame), 20.0f+scrollView.contentOffset.y,
+                         CGRectGetWidth(b.frame), CGRectGetHeight(b.frame));
+    b.backgroundColor = scrollView.contentOffset.y>0.0f ? [UIColor blackColor] : [UIColor whiteColor];
 }
 
 @end
