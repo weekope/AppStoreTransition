@@ -1,27 +1,29 @@
 //
-//  AnimatorDismiss.m
+//  AnimatorShowDetail.m
 //  appstore_transition
 //
 //  Created by 周希 on 2018/1/19.
 //
 
-#import "AnimatorShowImage.h"
+#import "AnimatorShowDetail.h"
 
-@implementation AnimatorShowImage
+@implementation AnimatorShowDetail
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    [UIView animateWithDuration:1.0f
+    UIView *viewTo = [transitionContext viewForKey:UITransitionContextToViewKey];
+    [transitionContext.containerView addSubview:viewTo];
+    
+    [UIView animateWithDuration:0.5f
                      animations:^{
-                         [transitionContext viewForKey:UITransitionContextFromViewKey].alpha = 0.0f;
+                         viewTo.frame = UIScreen.mainScreen.bounds;
                      }
                      completion:^(BOOL finished) {
-                         [transitionContext.containerView addSubview:[transitionContext viewForKey:UITransitionContextToViewKey]];
                          [transitionContext completeTransition:YES];
                      }];
 }
 
 - (NSTimeInterval)transitionDuration:(nullable id<UIViewControllerContextTransitioning>)transitionContext {
-    return 1.0f;
+    return 0.5f;
 }
 
 @end

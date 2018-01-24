@@ -7,6 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+
+
 @interface DetailTableVC : UITableViewController
+
+@property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactiveTransition;
 
 @end

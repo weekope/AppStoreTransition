@@ -18,35 +18,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="te2-ma-2Ay">
-                                <rect key="frame" x="20" y="60" width="335" height="400"/>
-                                <color key="backgroundColor" red="1" green="0.30760447979319805" blue="0.19392112854101173" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="1000" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="4Vo-aY-vUL">
+                                <rect key="frame" x="0.0" y="60" width="375" height="450"/>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="70J-fH-euZ"/>
+                                    <constraint firstAttribute="height" constant="450" id="ecE-eX-LfR"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="16"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="Oio-ei-Cpi" kind="show" id="lIg-yo-G3l"/>
+                                    <outletCollection property="gestureRecognizers" destination="3ta-ch-UiE" appends="YES" id="zJU-iS-149"/>
                                 </connections>
-                            </button>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="te2-ma-2Ay" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="JXl-Tw-FDh"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="te2-ma-2Ay" secondAttribute="trailing" constant="20" id="RzT-hN-yow"/>
-                            <constraint firstItem="te2-ma-2Ay" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="TgK-lP-K47"/>
+                            <constraint firstItem="4Vo-aY-vUL" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="WxX-YD-NG4"/>
+                            <constraint firstItem="4Vo-aY-vUL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uHL-mz-mLX"/>
+                            <constraint firstItem="4Vo-aY-vUL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="yxe-dr-1gE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="N2Q-0m-Da2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3ta-ch-UiE">
+                    <connections>
+                        <segue destination="Oio-ei-Cpi" kind="show" id="Y8l-RR-EmV"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="138" y="133"/>
+            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
         <!--Detail TableVC-->
         <scene sceneID="Xr6-rY-Ew8">
@@ -97,4 +97,7 @@
             <point key="canvasLocation" x="-572" y="133"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="image" width="716" height="993"/>
+    </resources>
 </document>

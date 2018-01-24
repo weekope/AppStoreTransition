@@ -110,7 +110,7 @@
 		A15B7862200C4FAE0097F6E1 /* appstore_transition */ = {
 			isa = PBXGroup;
 			children = (
-				A1CA0461201191E1004253FB /* Animator */,
+				A1CA0461201191E1004253FB /* Transition */,
 				A1CA0460201191C4004253FB /* ViewController */,
 				A15B7863200C4FAE0097F6E1 /* AppDelegate.h */,
 				A15B7864200C4FAE0097F6E1 /* AppDelegate.m */,
@@ -152,7 +152,7 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		A1CA0461201191E1004253FB /* Animator */ = {
+		A1CA0461201191E1004253FB /* Transition */ = {
 			isa = PBXGroup;
 			children = (
 				A1CA046820119B84004253FB /* AnimatorShowDetail.h */,
@@ -160,7 +160,7 @@
 				A1CA046520119254004253FB /* AnimatorShowImage.h */,
 				A1CA046620119254004253FB /* AnimatorShowImage.m */,
 			);
-			path = Animator;
+			path = Transition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

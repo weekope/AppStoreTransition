@@ -9,7 +9,11 @@
 
 
 
+
+
 const CGFloat headerHeight = 450.0f;
+
+
 
 
 
@@ -21,12 +25,16 @@ const CGFloat headerHeight = 450.0f;
 
 
 
+
+
 @implementation DetailTableVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    [self.navigationController.interactivePopGestureRecognizer removeTarget:nil action:nil];
+    [self.navigationController.interactivePopGestureRecognizer addTarget:self action:@selector(actionInteractivePop:)];
     [UIView animateWithDuration:0.3f animations:^{
         _hidden = YES;
         [self setNeedsStatusBarAppearanceUpdate];
@@ -35,10 +43,12 @@ const CGFloat headerHeight = 450.0f;
     self.tableView.contentInset = UIEdgeInsetsMake(headerHeight, 0.0f, 0.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(headerHeight, 0.0f, 0.0f, 0.0f);
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0f, -headerHeight, CGRectGetWidth(self.tableView.frame), headerHeight)];
-    view.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:78.0f/255.0f blue:49.0f/255.0f alpha:1.0f];
-    view.tag = 1000;
-    [self.tableView addSubview:view];
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, -headerHeight, CGRectGetWidth(self.tableView.frame), headerHeight)];
+    iv.image = [UIImage imageNamed:@"image"];
+    iv.contentMode = UIViewContentModeScaleAspectFill;
+    iv.clipsToBounds = YES;
+    iv.tag = 1000;
+    [self.tableView addSubview:iv];
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth([UIScreen mainScreen].bounds)-60.0f, 20.0f-headerHeight, 40.0f, 40.0f)];
     button.backgroundColor = [UIColor whiteColor];
@@ -80,6 +90,38 @@ const CGFloat headerHeight = 450.0f;
     b.frame = CGRectMake(CGRectGetMinX(b.frame), 20.0f+scrollView.contentOffset.y,
                          CGRectGetWidth(b.frame), CGRectGetHeight(b.frame));
     b.backgroundColor = scrollView.contentOffset.y>0.0f ? [UIColor blackColor] : [UIColor whiteColor];
+}
+
+
+#pragma mark - action
+
+- (void)actionInteractivePop:(UIGestureRecognizer *)gesture {
+    CGFloat progress = [gesture locationInView:self.view].x / CGRectGetWidth(self.view.frame);
+    progress = MIN(1.0, MAX(0.0, progress));
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan:
+            _interactiveTransition = [[UIPercentDrivenInteractiveTransition alloc] init];
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        case UIGestureRecognizerStateChanged:
+            if (progress > 0.4f) {
+                [_interactiveTransition finishInteractiveTransition];
+            }
+            else {
+                [_interactiveTransition updateInteractiveTransition:progress];
+            }
+            break;
+        case UIGestureRecognizerStateEnded:
+            if (progress > 0.4f) {
+                [_interactiveTransition finishInteractiveTransition];
+            }
+            else {
+                [_interactiveTransition cancelInteractiveTransition];
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 @end
