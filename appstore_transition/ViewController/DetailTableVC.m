@@ -50,9 +50,9 @@ const CGFloat headerHeight = 450.0f;
     iv.tag = 1000;
     [self.tableView addSubview:iv];
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth([UIScreen mainScreen].bounds)-60.0f, 20.0f-headerHeight, 40.0f, 40.0f)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth([UIScreen mainScreen].bounds)-52.0f, 20.0f-headerHeight, 32.0f, 32.0f)];
     button.backgroundColor = [UIColor whiteColor];
-    button.layer.cornerRadius = 20.0f;
+    button.layer.cornerRadius = 16.0f;
     button.tag = 2000;
     [button addTarget:self action:@selector(actionPop:) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView addSubview:button];
