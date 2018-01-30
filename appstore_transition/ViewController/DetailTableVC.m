@@ -17,9 +17,10 @@ const CGFloat headerHeight = 450.0f;
 
 
 
-@interface DetailTableVC ()
+@interface DetailTableVC () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign) BOOL hidden;
+@property (nonatomic, strong) UIPanGestureRecognizer *gesturePan;
 
 @end
 
@@ -35,6 +36,11 @@ const CGFloat headerHeight = 450.0f;
     self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     [self.navigationController.interactivePopGestureRecognizer removeTarget:nil action:nil];
     [self.navigationController.interactivePopGestureRecognizer addTarget:self action:@selector(actionInteractivePop:)];
+    
+    _gesturePan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(actionInteractivePop:)];
+    _gesturePan.delegate = self;
+    [self.view addGestureRecognizer:_gesturePan];
+    
     [UIView animateWithDuration:0.3f animations:^{
         _hidden = YES;
         [self setNeedsStatusBarAppearanceUpdate];
@@ -58,6 +64,9 @@ const CGFloat headerHeight = 450.0f;
     [self.tableView addSubview:button];
 }
 
+
+#pragma mark - status bar
+
 - (BOOL)prefersStatusBarHidden {
     return _hidden;
 }
@@ -66,18 +75,8 @@ const CGFloat headerHeight = 450.0f;
     return UIStatusBarAnimationSlide;
 }
 
-- (void)actionPop:(UIButton *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 #pragma mark - scroll
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    if (scrollView.contentOffset.y==-headerHeight && [scrollView.panGestureRecognizer velocityInView:scrollView].y>0.0f) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView.contentOffset.y < -headerHeight) {
@@ -93,11 +92,28 @@ const CGFloat headerHeight = 450.0f;
 }
 
 
+#pragma mark - gesture
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return (self.tableView.contentOffset.y==-headerHeight && [self.tableView.panGestureRecognizer velocityInView:self.tableView].y>0.0f);
+}
+
+
 #pragma mark - action
 
+- (void)actionPop:(UIButton *)sender {
+    _isClosed = YES;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)actionInteractivePop:(UIGestureRecognizer *)gesture {
-    CGFloat progress = [gesture locationInView:self.view].x / CGRectGetWidth(self.view.frame);
-    progress = MIN(1.0, MAX(0.0, progress));
+    CGFloat progress = 0.0f;
+    if ([gesture isEqual:_gesturePan]) {
+        progress = [_gesturePan translationInView:self.view].y / CGRectGetHeight(self.view.frame);
+    }
+    else {
+        progress = [gesture locationInView:self.view].x / CGRectGetWidth(self.view.frame);
+    }
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:
             _interactiveTransition = [[UIPercentDrivenInteractiveTransition alloc] init];

@@ -14,4 +14,6 @@
 
 @interface AnimatorShowImage : NSObject <UIViewControllerAnimatedTransitioning>
 
+- (instancetype)initWithCloses:(BOOL)isClosed;
+
 @end

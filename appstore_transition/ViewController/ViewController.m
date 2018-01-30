@@ -53,9 +53,9 @@
     if (operation == UINavigationControllerOperationPush) {
         return [[AnimatorShowDetail alloc] init];
     }
-//    else if (operation == UINavigationControllerOperationPop) {
-//        return [[AnimatorShowImage alloc] init];
-//    }
+    else if (operation == UINavigationControllerOperationPop) {
+        return [[AnimatorShowImage alloc] initWithCloses:((DetailTableVC *)fromVC).isClosed];
+    }
     else {
         return nil;
     }

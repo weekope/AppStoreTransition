@@ -14,5 +14,6 @@
 @interface DetailTableVC : UITableViewController
 
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactiveTransition;
+@property (nonatomic, assign) BOOL isClosed;
 
 @end
