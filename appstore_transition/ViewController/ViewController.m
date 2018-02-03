@@ -32,9 +32,9 @@
     
     self.navigationController.delegate = self;
     
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(20.0f, 25.0f, CGRectGetWidth(UIScreen.mainScreen.bounds)-40.0f, 400.0f)];
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(imageMaskLeftRight, imageMaskTopBottom, CGRectGetWidth(UIScreen.mainScreen.bounds)-imageMaskLeftRight*2, imageMaskHeight)];
     v.backgroundColor = [UIColor whiteColor];
-    v.layer.cornerRadius = 16.0f;
+    v.layer.cornerRadius = imageMaskCornerRadius;
     [self.view viewWithTag:1000].maskView = v;
 }
 
@@ -54,7 +54,7 @@
         return [[AnimatorShowDetail alloc] init];
     }
     else if (operation == UINavigationControllerOperationPop) {
-        return [[AnimatorShowImage alloc] initWithCloses:((DetailTableVC *)fromVC).isClosed];
+        return [[AnimatorShowImage alloc] initWithCloses:_destinationVC.isClosed];
     }
     else {
         return nil;

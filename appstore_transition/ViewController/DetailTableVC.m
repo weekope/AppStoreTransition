@@ -11,12 +11,6 @@
 
 
 
-const CGFloat headerHeight = 450.0f;
-
-
-
-
-
 @interface DetailTableVC () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign) BOOL hidden;
@@ -41,22 +35,22 @@ const CGFloat headerHeight = 450.0f;
     _gesturePan.delegate = self;
     [self.view addGestureRecognizer:_gesturePan];
     
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:transitionDuration animations:^{
         _hidden = YES;
         [self setNeedsStatusBarAppearanceUpdate];
     }];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(headerHeight, 0.0f, 0.0f, 0.0f);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(headerHeight, 0.0f, 0.0f, 0.0f);
+    self.tableView.contentInset = UIEdgeInsetsMake(imageOriginHeight, 0.0f, 0.0f, 0.0f);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(imageOriginHeight, 0.0f, 0.0f, 0.0f);
     
-    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, -headerHeight, CGRectGetWidth(self.tableView.frame), headerHeight)];
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, -imageOriginHeight, CGRectGetWidth(self.tableView.frame), imageOriginHeight)];
     iv.image = [UIImage imageNamed:@"image"];
     iv.contentMode = UIViewContentModeScaleAspectFill;
     iv.clipsToBounds = YES;
     iv.tag = 1000;
     [self.tableView addSubview:iv];
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth([UIScreen mainScreen].bounds)-52.0f, 20.0f-headerHeight, 32.0f, 32.0f)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.tableView.frame)-52.0f, 20.0f-imageOriginHeight, 32.0f, 32.0f)];
     button.backgroundColor = [UIColor whiteColor];
     button.layer.cornerRadius = 16.0f;
     button.tag = 2000;
@@ -79,7 +73,7 @@ const CGFloat headerHeight = 450.0f;
 #pragma mark - scroll
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView.contentOffset.y < -headerHeight) {
+    if (scrollView.contentOffset.y < -imageOriginHeight) {
         UIView *v = [self.tableView viewWithTag:1000];
         v.frame = CGRectMake(CGRectGetMinX(v.frame), scrollView.contentOffset.y,
                              CGRectGetWidth(v.frame), CGRectGetHeight(v.frame));
@@ -95,7 +89,7 @@ const CGFloat headerHeight = 450.0f;
 #pragma mark - gesture
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    return (self.tableView.contentOffset.y==-headerHeight && [self.tableView.panGestureRecognizer velocityInView:self.tableView].y>0.0f);
+    return (self.tableView.contentOffset.y==-imageOriginHeight && [self.tableView.panGestureRecognizer velocityInView:self.tableView].y>0.0f);
 }
 
 
@@ -107,12 +101,12 @@ const CGFloat headerHeight = 450.0f;
 }
 
 - (void)actionInteractivePop:(UIGestureRecognizer *)gesture {
-    CGFloat progress = 0.0f;
+    CGFloat percent = 0.0f;
     if ([gesture isEqual:_gesturePan]) {
-        progress = [_gesturePan translationInView:self.view].y / CGRectGetHeight(self.view.frame);
+        percent = [_gesturePan translationInView:self.view].y / CGRectGetHeight(self.view.frame);
     }
     else {
-        progress = [gesture locationInView:self.view].x / CGRectGetWidth(self.view.frame);
+        percent = [gesture locationInView:self.view].x / CGRectGetWidth(self.view.frame);
     }
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:
@@ -120,20 +114,23 @@ const CGFloat headerHeight = 450.0f;
             [self.navigationController popViewControllerAnimated:YES];
             break;
         case UIGestureRecognizerStateChanged:
-            if (progress > 0.4f) {
+            if (percent > percentToPop) {
                 [_interactiveTransition finishInteractiveTransition];
             }
             else {
-                [_interactiveTransition updateInteractiveTransition:progress];
+                [_interactiveTransition updateInteractiveTransition:percent];
             }
             break;
         case UIGestureRecognizerStateEnded:
-            if (progress > 0.4f) {
+            if (percent > percentToPop) {
                 [_interactiveTransition finishInteractiveTransition];
             }
             else {
                 [_interactiveTransition cancelInteractiveTransition];
             }
+            //手势结束之后必须清空interactive对象！！！
+            //如果没有清空，在交互式转场取消后该对象依然存在；且在非交互式转场时被返回，会导致转场动画失效！！！
+            _interactiveTransition = nil;
             break;
         default:
             break;
