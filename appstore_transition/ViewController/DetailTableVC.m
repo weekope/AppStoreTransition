@@ -44,7 +44,7 @@
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(imageOriginHeight, 0.0f, 0.0f, 0.0f);
     
     UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, -imageOriginHeight, CGRectGetWidth(self.tableView.frame), imageOriginHeight)];
-    iv.image = [UIImage imageNamed:@"image"];
+    iv.image = [UIImage imageNamed:_imageName];
     iv.contentMode = UIViewContentModeScaleAspectFill;
     iv.clipsToBounds = YES;
     iv.tag = 1000;

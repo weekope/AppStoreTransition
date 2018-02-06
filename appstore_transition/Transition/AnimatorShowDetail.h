@@ -14,4 +14,6 @@
 
 @interface AnimatorShowDetail : NSObject <UIViewControllerAnimatedTransitioning>
 
+@property (nonatomic, assign) CGFloat viewYFrom;
+
 @end

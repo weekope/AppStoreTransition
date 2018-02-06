@@ -13,7 +13,6 @@
 
 @interface AnimatorShowImage ()
 
-@property (nonatomic, assign) BOOL isClosed;
 @property (nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
 
 @end
@@ -24,18 +23,10 @@
 
 @implementation AnimatorShowImage
 
-- (instancetype)initWithCloses:(BOOL)isClosed {
-    self = [super init];
-    if (self) {
-        _isClosed = isClosed;
-    }
-    return self;
-}
-
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     _transitionContext = transitionContext;
 
-    [transitionContext.containerView insertSubview:[transitionContext viewForKey:UITransitionContextToViewKey] belowSubview:transitionContext.containerView.subviews.lastObject];
+    [transitionContext.containerView insertSubview:[transitionContext viewForKey:UITransitionContextToViewKey] atIndex:0];
     UIView *viewFrom = [transitionContext viewForKey:UITransitionContextFromViewKey];
 
     //可以使用maskView或者mask+bezierPath
@@ -45,23 +36,35 @@
     viewFrom.maskView = v;
     
     if (_isClosed) {
+        [transitionContext.containerView.subviews[1] removeFromSuperview];
+        _viewToTransition.hidden = YES;
+        
         [UIView animateWithDuration:transitionDuration
+                              delay:0.0f
+             usingSpringWithDamping:springDamping
+              initialSpringVelocity:0.0f
+                            options:0
                          animations:^{
-                             viewFrom.frame = CGRectMake(CGRectGetMinX(viewFrom.frame), CGRectGetMinY([[transitionContext viewForKey:UITransitionContextToViewKey] viewWithTag:1000].frame),
+                             viewFrom.frame = CGRectMake(CGRectGetMinX(viewFrom.frame), _viewYTo,
                                                          CGRectGetWidth(viewFrom.frame), CGRectGetHeight(viewFrom.frame));
                              viewFrom.maskView.frame = CGRectMake(imageMaskLeftRight, imageMaskTopBottom-imageOriginHeight, CGRectGetWidth(UIScreen.mainScreen.bounds)-imageMaskLeftRight*2, imageMaskHeight);
                              viewFrom.maskView.layer.cornerRadius = imageMaskCornerRadius;
                              ((UITableView *)viewFrom).contentOffset = CGPointMake(0.0f, -imageOriginHeight);
                          }
                          completion:^(BOOL finished) {
+                             _viewToTransition.hidden = NO;
                              [transitionContext completeTransition:YES];
                          }];
     }
     else {
-        [UIView animateWithDuration:0.3f
+        [UIView animateWithDuration:transitionDuration-animationEndDuration
+                              delay:0.0f
+             usingSpringWithDamping:springDamping
+              initialSpringVelocity:0.0f
+                            options:0
                          animations:^{
-                             viewFrom.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
-                             viewFrom.maskView.layer.cornerRadius = 16.0f;
+                             viewFrom.transform = CGAffineTransformMakeScale(transformScale, transformScale);
+                             viewFrom.maskView.layer.cornerRadius = imageMaskCornerRadius;
                          }
                          completion:^(BOOL finished) {
                              [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
@@ -70,7 +73,7 @@
 }
 
 - (NSTimeInterval)transitionDuration:(nullable id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.3f;
+    return transitionDuration;
 }
 
 - (void)animationEnded:(BOOL)transitionCompleted {
@@ -78,16 +81,22 @@
         if (transitionCompleted) {
             UIView *viewFrom = [_transitionContext viewForKey:UITransitionContextFromViewKey];
             [_transitionContext.containerView addSubview:viewFrom];
+            [_transitionContext.containerView.subviews[1] removeFromSuperview];
 
             [UIView animateWithDuration:animationEndDuration
+                                  delay:0.0f
+                 usingSpringWithDamping:springDamping
+                  initialSpringVelocity:0.0f
+                                options:0
                              animations:^{
                                  viewFrom.transform = CGAffineTransformIdentity;
-                                 viewFrom.frame = CGRectMake(CGRectGetMinX(viewFrom.frame), CGRectGetMinY([[_transitionContext viewForKey:UITransitionContextToViewKey] viewWithTag:1000].frame),
+                                 viewFrom.frame = CGRectMake(CGRectGetMinX(viewFrom.frame), _viewYTo,
                                                              CGRectGetWidth(viewFrom.frame), CGRectGetHeight(viewFrom.frame));
                                  viewFrom.maskView.frame = CGRectMake(imageMaskLeftRight, imageMaskTopBottom-imageOriginHeight, CGRectGetWidth(UIScreen.mainScreen.bounds)-imageMaskLeftRight*2, imageMaskHeight);
                                  ((UITableView *)viewFrom).contentOffset = CGPointMake(0.0f, -imageOriginHeight);
                              }
                              completion:^(BOOL finished) {
+                                 _viewToTransition.hidden = NO;
                                  [viewFrom removeFromSuperview];
                              }];
         }

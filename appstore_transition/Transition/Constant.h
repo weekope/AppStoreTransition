@@ -16,8 +16,9 @@ static const CGFloat imageMaskHeight    = 400.0f;
 static const CGFloat imageOriginHeight  = 450.0f;
 static const CGFloat imageMaskCornerRadius = 16.0f;
 
-static const CGFloat transitionDuration = 0.3f;
-static const CGFloat animationEndDuration = 0.1f;
+static const CGFloat transitionDuration = 1.0f;
+static const CGFloat animationEndDuration = 0.5f;
+static const CGFloat springDamping = 0.5f;
 
 static const CGFloat transformScale = 0.8f;
 static const CGFloat percentToPop = 0.4f;

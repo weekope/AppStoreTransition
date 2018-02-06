@@ -6,47 +6,55 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--List TableVC-->
+        <scene sceneID="kV9-MF-Exc">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <tableViewController id="H73-TQ-JXH" customClass="ListTableVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fxJ-7G-X02">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="1000" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="4Vo-aY-vUL">
-                                <rect key="frame" x="0.0" y="60" width="375" height="450"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="450" id="ecE-eX-LfR"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="3ta-ch-UiE" appends="YES" id="zJU-iS-149"/>
-                                </connections>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="4Vo-aY-vUL" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="WxX-YD-NG4"/>
-                            <constraint firstItem="4Vo-aY-vUL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uHL-mz-mLX"/>
-                            <constraint firstItem="4Vo-aY-vUL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="yxe-dr-1gE"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="N2Q-0m-Da2"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="3ta-ch-UiE">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_card" rowHeight="500" id="r1L-zB-aDV">
+                                <rect key="frame" x="0.0" y="28" width="375" height="500"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r1L-zB-aDV" id="KJX-ma-dwi">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="1000" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image0" translatesAutoresizingMaskIntoConstraints="NO" id="MYF-se-GWX">
+                                            <rect key="frame" x="0.0" y="25" width="375" height="450"/>
+                                            <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="450" id="Tx4-i8-xKr"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="MYF-se-GWX" firstAttribute="top" secondItem="KJX-ma-dwi" secondAttribute="top" constant="25" id="13E-Ww-teG"/>
+                                        <constraint firstAttribute="trailing" secondItem="MYF-se-GWX" secondAttribute="trailing" id="e8t-4P-XvY"/>
+                                        <constraint firstItem="MYF-se-GWX" firstAttribute="leading" secondItem="KJX-ma-dwi" secondAttribute="leading" id="k0y-U0-tgJ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="H73-TQ-JXH" id="O8R-4Q-5tk"/>
+                            <outlet property="delegate" destination="H73-TQ-JXH" id="79U-oe-tQS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="GE8-TF-Z4S"/>
                     <connections>
-                        <segue destination="Oio-ei-Cpi" kind="show" id="Y8l-RR-EmV"/>
+                        <segue destination="Oio-ei-Cpi" kind="show" identifier="segue_list_detail" id="PtV-ZZ-1q0"/>
                     </connections>
-                </tapGestureRecognizer>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JtF-Ey-hr1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+            <point key="canvasLocation" x="146" y="133"/>
         </scene>
         <!--Detail TableVC-->
         <scene sceneID="Xr6-rY-Ew8">
@@ -59,13 +67,31 @@
                         <sections>
                             <tableViewSection id="vNm-4a-v6P">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="1000" id="JQQ-XO-e6X">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="900" id="JQQ-XO-e6X">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JQQ-XO-e6X" id="jhl-Le-Qbm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" red="0.0" green="1" blue="0.81376936259999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMC-7Y-i1F">
+                                                    <rect key="frame" x="20" y="20" width="335" height="832"/>
+                                                    <string key="text">       《小黄人》围绕小黄人们的“前格鲁时代”展开叙述，并特别追溯了小黄人的起源。小黄人总是忠诚地为主人提供各种服务，兢兢业业，毫无怨言，直到它们失手“害死”每一任主人。在痛苦地失去一个又一个主人后，被困在冰洞之内小黄人们愈发焦躁不安，他们决定挺身而出，去到花花世界，再次寻找可以效劳的主人。
+       时值上世纪60年代，小黄人三人组无意间看到了“坏蛋大会”广告，该大会声称世界第一女坏蛋斯嘉丽·杀人狂会出席大会并发表演讲。于是，三个小黄人搭上了银行抢劫犯的顺风车。在经历了一系列的坎坷之后，小黄人终于成为斯嘉丽的助手。它们为斯嘉丽执行的第一个任务就是盗取英国伊丽莎白女王的皇冠，任务进展的十分顺利，顺利到呆萌的鲍勃竟然莫名其妙的成为新任国王，于是一系列的麻烦接踵而至。
+
+       整体而言，《小黄人》不去推进剧情发展而专注于展现小黄人本身的时候最为精彩，希望看到小黄人演绎什么惊心动魄故事的人恐怕要失望了。但考虑到小黄人的重要特点——他们无人能懂的爪哇国语言，无论是把故事线铺得太开还是让小黄人的性格特色更完整都是既有难度又有风险。
+       小黄人的萌度足以让观众忽略它们的笨拙，它们各式各样的恶作剧穿插于电影的各个桥段中，这些恶作剧的存在也弥补了影片叙事不足，硬料不够的遗憾。另一方面来说，这种设置足以保证小黄人成为影片的绝对主角，毕竟相比于《神偷奶爸》中的格鲁，本片中的女反派斯嘉丽无论在气势还是笑料上都弱了不少。
+       《小黄人》更像是一部搞笑短片集合而成的动画长片。本质上，《小黄人》呈现的是三位不擅长做坏蛋的主人公的冒险之旅，它们的所有举动都相当“看心情”。而影片为观众提供的快乐也是轻巧而简单的，毕竟对于小黄人这种原本只靠萌度就能生存却偏偏要靠智商的萌物，人们也无法要求更多了。</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zMC-7Y-i1F" firstAttribute="leading" secondItem="jhl-Le-Qbm" secondAttribute="leading" constant="20" id="WkE-2F-aoe"/>
+                                                <constraint firstAttribute="trailing" secondItem="zMC-7Y-i1F" secondAttribute="trailing" constant="20" id="lV9-Pv-n2y"/>
+                                                <constraint firstItem="zMC-7Y-i1F" firstAttribute="top" secondItem="jhl-Le-Qbm" secondAttribute="top" constant="20" id="tgO-tt-eed"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -89,7 +115,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ote-J9-K3b"/>
+                        <segue destination="H73-TQ-JXH" kind="relationship" relationship="rootViewController" id="s6e-Xu-jTY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kpz-nd-6wx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -98,6 +124,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="image" width="716" height="993"/>
+        <image name="image0" width="716" height="993"/>
     </resources>
 </document>

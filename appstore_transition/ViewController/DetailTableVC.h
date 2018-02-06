@@ -15,5 +15,6 @@
 
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactiveTransition;
 @property (nonatomic, assign) BOOL isClosed;
+@property (nonatomic, copy) NSString *imageName;
 
 @end

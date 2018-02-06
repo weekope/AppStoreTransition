@@ -14,6 +14,8 @@
 
 @interface AnimatorShowImage : NSObject <UIViewControllerAnimatedTransitioning>
 
-- (instancetype)initWithCloses:(BOOL)isClosed;
+@property (nonatomic, assign) BOOL isClosed;
+@property (nonatomic, assign) CGFloat viewYTo;
+@property (nonatomic, strong) UIView *viewToTransition;
 
 @end
