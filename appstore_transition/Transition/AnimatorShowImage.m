@@ -25,6 +25,7 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     _transitionContext = transitionContext;
+    _viewToTransition.hidden = YES;
 
     [transitionContext.containerView insertSubview:[transitionContext viewForKey:UITransitionContextToViewKey] atIndex:0];
     UIView *viewFrom = [transitionContext viewForKey:UITransitionContextFromViewKey];
@@ -34,10 +35,9 @@
     v.backgroundColor = [UIColor whiteColor];
     v.layer.cornerRadius = 0.0f;
     viewFrom.maskView = v;
-    
+
     if (_isClosed) {
         [transitionContext.containerView.subviews[1] removeFromSuperview];
-        _viewToTransition.hidden = YES;
         
         [UIView animateWithDuration:transitionDuration
                               delay:0.0f
@@ -50,6 +50,7 @@
                              viewFrom.maskView.frame = CGRectMake(imageMaskLeftRight, imageMaskTopBottom-imageOriginHeight, CGRectGetWidth(UIScreen.mainScreen.bounds)-imageMaskLeftRight*2, imageMaskHeight);
                              viewFrom.maskView.layer.cornerRadius = imageMaskCornerRadius;
                              ((UITableView *)viewFrom).contentOffset = CGPointMake(0.0f, -imageOriginHeight);
+                             [viewFrom viewWithTag:2000].alpha = 0.0f;
                          }
                          completion:^(BOOL finished) {
                              _viewToTransition.hidden = NO;
@@ -94,6 +95,7 @@
                                                              CGRectGetWidth(viewFrom.frame), CGRectGetHeight(viewFrom.frame));
                                  viewFrom.maskView.frame = CGRectMake(imageMaskLeftRight, imageMaskTopBottom-imageOriginHeight, CGRectGetWidth(UIScreen.mainScreen.bounds)-imageMaskLeftRight*2, imageMaskHeight);
                                  ((UITableView *)viewFrom).contentOffset = CGPointMake(0.0f, -imageOriginHeight);
+                                 [viewFrom viewWithTag:2000].alpha = 0.0f;
                              }
                              completion:^(BOOL finished) {
                                  _viewToTransition.hidden = NO;

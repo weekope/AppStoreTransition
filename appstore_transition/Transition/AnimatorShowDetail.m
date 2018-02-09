@@ -18,6 +18,7 @@
     viewTo.frame = CGRectMake(CGRectGetMinX(viewTo.frame), _viewYFrom,
                               CGRectGetWidth(viewTo.frame), CGRectGetHeight(viewTo.frame));
     [transitionContext.containerView addSubview:viewTo];
+    [viewTo viewWithTag:2000].alpha = 0.0f;
     
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(imageMaskLeftRight, imageMaskTopBottom-imageOriginHeight, CGRectGetWidth(UIScreen.mainScreen.bounds)-imageMaskLeftRight*2, imageMaskHeight)];
     v.backgroundColor = [UIColor whiteColor];
@@ -33,6 +34,7 @@
                          viewTo.frame = UIScreen.mainScreen.bounds;
                          viewTo.maskView.frame = CGRectMake(0.0f, -imageOriginHeight, CGRectGetWidth(viewTo.frame), CGRectGetHeight(viewTo.frame));
                          viewTo.maskView.layer.cornerRadius = 0.0f;
+                         [viewTo viewWithTag:2000].alpha = 1.0f;
                      }
                      completion:^(BOOL finished) {
                          vev.frame = UIScreen.mainScreen.bounds;

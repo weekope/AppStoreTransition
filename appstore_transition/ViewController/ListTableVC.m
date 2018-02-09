@@ -107,6 +107,7 @@
 
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
                          interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
+    //返回值必须和实际转场类型强关联。例：非交互式转场返回空，交互式转场返回interactive对象
     return _destinationVC.interactiveTransition;
 }
 
